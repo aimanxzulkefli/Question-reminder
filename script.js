@@ -1,18 +1,18 @@
 const container = document.querySelector('.container')
-const search = document.querySelector('.button .history-btn')
-const submit = document.querySelector('.button .submit-btn')
+const historyBtn = document.querySelector('.button .history-btn')
+const submitBtn = document.querySelector('.button .submit-btn')
 const history = document.querySelector('.history')
 var textBox = document.querySelector('.text-box input')
 const library = []
 
-submit.addEventListener('click',()=>{
+submitBtn.addEventListener('click', () => {
 
     var text = textBox.value
 
-    if(text===''){
+    if (text === '') {
         return
-    }else{
-        
+    } else if (!library.includes(text)) {
+
         library.push(text)
 
         const newQuestion = document.createElement('div')
@@ -27,7 +27,7 @@ submit.addEventListener('click',()=>{
         question.classList.add('question')
         question.textContent = text
 
-        const deleteBtn = document.createElement('button')
+        var deleteBtn = document.createElement('button')
         deleteBtn.classList.add('delete-btn')
 
         const deleteIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
@@ -41,28 +41,59 @@ submit.addEventListener('click',()=>{
 
         deleteBtn.appendChild(deleteIcon)
 
+        // deleteIcon.addEventListener('click', () => {
+
+        //     const index = library.findIndex(item => item.text === text)
+        //     if (index !== -1) {
+        //         library.splice(index, 1)
+        //         history.removeChild(newQuestion)
+        //     }
+        // })
+
         history.appendChild(newQuestion)
 
         history.insertBefore(newQuestion, history.firstChild)
 
+        textBox.value = 'Saved'
+
+    } else {
+        textBox.value = 'Already asked'
     }
-    textBox.value = ''
+
+    textBox.style.transition = 'opacity 0.5s ease-in-out';
+    textBox.style.opacity = 0;
+
+    setTimeout(() => {
+        textBox.value = '';
+        textBox.style.opacity = 1;
+    }, 500);
 })
 
 
-search.addEventListener('click',()=>{
+historyBtn.addEventListener('click', () => {
 
-    if(library.length===0){
+    const textBox = document.querySelector('.text-box')
+
+    if (library.length === 0) {
         return
-    }else{
-        const textBox = document.querySelector('.text-box')
-        
+    } else if (history.style.display === 'block') {
+        container.style.height = '275px'
+        textBox.style.height = '217px'
+        textBox.style.transition = '0.6s ease-in'
+        history.classList.add('fadeOut')
+        setTimeout(() => {
+            history.style.display = 'none'
+            history.classList.remove('fadeOut')
+        }, 500)
+
+    } else {
+
         container.style.height = '675px'
         textBox.style.height = '117px'
-        textBox.classList.add('fadeIn')
+        textBox.style.transition = '0.6s ease-out'
         history.style.display = 'block'
         history.classList.add('fadeIn')
     }
-   
+
 })
 
