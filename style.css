@@ -19,7 +19,7 @@ body {
     height: 275px;
     font-family: 'Roboto', sans-serif;
     transition: 0.6s ease-out;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     overflow: hidden;
 }
 
@@ -52,8 +52,7 @@ body {
     padding-top: 10px;
     transition: 0.4s ease;
 }
-
-.search-btn,
+.history-btn,
 .submit-btn {
     flex: 1;
     height: 100%;
@@ -73,8 +72,9 @@ body {
     justify-content: flex-start;   
     background-color: #d9d9d9;
     margin: 10px 0px;
-    /* scale: 0;
-    opacity: 0; */
+    scale: 0;
+    opacity: 0;
+    scroll-behavior: smooth;
 }
 
 .history-questions{

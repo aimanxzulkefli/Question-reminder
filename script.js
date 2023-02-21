@@ -1,19 +1,18 @@
 const container = document.querySelector('.container')
-const search = document.querySelector('.button .search-btn')
+const search = document.querySelector('.button .history-btn')
 const submit = document.querySelector('.button .submit-btn')
 const history = document.querySelector('.history')
-
+var textBox = document.querySelector('.text-box input')
 const library = []
 
 submit.addEventListener('click',()=>{
 
-    var textBox = document.querySelector('.text-box input')
     var text = textBox.value
 
     if(text===''){
         return
     }else{
-        alert(`"${text}" saved`)
+        
         library.push(text)
 
         const newQuestion = document.createElement('div')
@@ -44,25 +43,26 @@ submit.addEventListener('click',()=>{
 
         history.appendChild(newQuestion)
 
-        history.style.flexDirection = 'column-reverse'
+        history.insertBefore(newQuestion, history.firstChild)
 
     }
     textBox.value = ''
 })
 
 
-// search.addEventListener('click',()=>{
+search.addEventListener('click',()=>{
 
-//     if(text===''){
-//         return
-//     }else if(library.includes(text)){
-//         container.style.height = '675px'
-//         history.style.display = 'block'
-//         history.classList.add('fadeIn')
-//     }
-
-//     history.style.display = ''
-//     history.classList.remove('fadeIn')
-//     container.style.height = '675px'
-// })
+    if(library.length===0){
+        return
+    }else{
+        const textBox = document.querySelector('.text-box')
+        
+        container.style.height = '675px'
+        textBox.style.height = '117px'
+        textBox.classList.add('fadeIn')
+        history.style.display = 'block'
+        history.classList.add('fadeIn')
+    }
+   
+})
 
