@@ -41,14 +41,16 @@ submitBtn.addEventListener('click', () => {
 
         deleteBtn.appendChild(deleteIcon)
 
-        // deleteIcon.addEventListener('click', () => {
+        newQuestion.addEventListener('mouseover',()=>{
 
-        //     const index = library.findIndex(item => item.text === text)
-        //     if (index !== -1) {
-        //         library.splice(index, 1)
-        //         history.removeChild(newQuestion)
-        //     }
-        // })
+            deleteBtn.addEventListener('click',()=>{
+                newQuestion.remove()
+                const index = library.indexOf(text)
+                if(index!==-1){
+                    library.splice(index,1)
+                }
+            })
+        })
 
         history.appendChild(newQuestion)
 
@@ -96,4 +98,7 @@ historyBtn.addEventListener('click', () => {
     }
 
 })
+
+
+
 
