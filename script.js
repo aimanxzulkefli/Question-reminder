@@ -2,12 +2,18 @@ const container = document.querySelector('.container')
 const historyBtn = document.querySelector('.button .history-btn')
 const submitBtn = document.querySelector('.button .submit-btn')
 const history = document.querySelector('.history')
-var textBox = document.querySelector('.text-box input')
+var textInput = document.querySelector('.text-box input')
+const textBox = document.querySelector('.text-box')
 const library = []
+
+textBox.addEventListener('click',()=>{
+
+   
+})
 
 submitBtn.addEventListener('click', () => {
 
-    var text = textBox.value
+    var text = textInput.value
 
     if (text === '') {
         return
@@ -15,7 +21,7 @@ submitBtn.addEventListener('click', () => {
 
         library.push(text)
 
-        const newQuestion = document.createElement('div')
+        var newQuestion = document.createElement('div')
         newQuestion.classList.add('history-questions')
 
         const smsIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
@@ -56,29 +62,28 @@ submitBtn.addEventListener('click', () => {
 
         history.insertBefore(newQuestion, history.firstChild)
 
-        textBox.value = 'Saved'
+        textInput.value = 'Saved'
 
     } else {
-        textBox.value = 'Already asked'
+        textInput.value = 'Already asked'
     }
 
-    textBox.style.transition = 'opacity 0.5s ease-in-out';
-    textBox.style.opacity = 0;
+    textInput.style.transition = 'opacity 0.5s ease-in-out';
+    textInput.style.opacity = 0;
 
     setTimeout(() => {
-        textBox.value = '';
-        textBox.style.opacity = 1;
+        textInput.value = '';
+        textInput.style.opacity = 1;
     }, 500);
 })
 
-
 historyBtn.addEventListener('click', () => {
 
-    const textBox = document.querySelector('.text-box')
+    console.log('in')
+    console.log(library.length)
+    
 
-    if (library.length === 0) {
-        return
-    } else if (history.style.display === 'block') {
+    if (history.style.display === 'block') {
         container.style.height = '275px'
         textBox.style.height = '217px'
         textBox.style.transition = '0.6s ease-in'
@@ -97,7 +102,10 @@ historyBtn.addEventListener('click', () => {
         history.classList.add('fadeIn')
     }
 
+    console.log('out')
+
 })
+
 
 
 
