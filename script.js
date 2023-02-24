@@ -2,14 +2,11 @@ const container = document.querySelector('.container')
 const historyBtn = document.querySelector('.button .history-btn')
 const submitBtn = document.querySelector('.button .submit-btn')
 const history = document.querySelector('.history')
-var textInput = document.querySelector('.text-box input')
+var textInput = document.querySelector('.text-box textarea')
 const textBox = document.querySelector('.text-box')
 const library = []
 
-textBox.addEventListener('click',()=>{
 
-   
-})
 
 submitBtn.addEventListener('click', () => {
 
@@ -79,10 +76,7 @@ submitBtn.addEventListener('click', () => {
 
 historyBtn.addEventListener('click', () => {
 
-    console.log('in')
-    console.log(library.length)
-    
-
+   
     if (history.style.display === 'block') {
         container.style.height = '275px'
         textBox.style.height = '217px'
@@ -102,7 +96,7 @@ historyBtn.addEventListener('click', () => {
         history.classList.add('fadeIn')
     }
 
-    console.log('out')
+
 
 })
 
