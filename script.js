@@ -7,7 +7,6 @@ const textBox = document.querySelector('.text-box')
 const library = []
 
 
-
 submitBtn.addEventListener('click', () => {
 
     var text = textInput.value
@@ -17,6 +16,23 @@ submitBtn.addEventListener('click', () => {
     } else if (!library.includes(text)) {
 
         library.push(text)
+
+        const createQuestion = async()=>{
+
+            let response = await fetch('http://localhost:8089/questions/list')
+            let response2 = await fetch('http://localhost:8089/questions/create',{
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    question: text
+                })
+            })
+        }
+
+        createQuestion()
 
         var newQuestion = document.createElement('div')
         newQuestion.classList.add('history-questions')
@@ -43,6 +59,8 @@ submitBtn.addEventListener('click', () => {
         newQuestion.appendChild(deleteBtn)
 
         deleteBtn.appendChild(deleteIcon)
+
+        
 
         newQuestion.addEventListener('mouseover',()=>{
 
@@ -72,6 +90,7 @@ submitBtn.addEventListener('click', () => {
         textInput.value = '';
         textInput.style.opacity = 1;
     }, 500);
+
 })
 
 historyBtn.addEventListener('click', () => {
