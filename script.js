@@ -10,6 +10,7 @@ const library = []
 submitBtn.addEventListener('click', () => {
 
     var text = textInput.value
+    text = text.replace(/[^\w ]/g, '')
 
     if (text === '') {
         return
