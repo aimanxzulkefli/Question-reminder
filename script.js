@@ -12,6 +12,11 @@ submitBtn.addEventListener('click', () => {
     var text = textInput.value
     text = text.replace(/[^\w ]/g, '')
 
+    const encodeHTML = str =>
+    str.replace(/[\u00A0-\u9999<>\&]/gim, (i) => `&#${i.charCodeAt(0)};`)
+
+    const encodedText = encodeHTML(text)
+
     if (text === '') {
         return
     } else if (!library.includes(text)) {
